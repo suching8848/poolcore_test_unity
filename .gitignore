@@ -1,0 +1,12 @@
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Ll]ogs/
+/[Uu]serSettings/
+/[Bb]uilds/
+/[Bb]uild/
+/.vs/
+/*.csproj
+/*.sln
+/*.slnx
+/artifacts/
