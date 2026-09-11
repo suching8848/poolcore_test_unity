@@ -117,7 +117,10 @@ namespace Poolcore
         public void ApplyQuality(int value)
         {
             quality=Mathf.Clamp(value,0,2);
-            if(runtimePipeline) { runtimePipeline.renderScale=new[]{0.75f,0.9f,1f}[quality]; runtimePipeline.shadowDistance=new[]{25f,45f,65f}[quality]; runtimePipeline.msaaSampleCount=quality==2?4:2; }
+            // MSAA must stay off: URP silently disables TAA while MSAA is on ("Disabling TAA
+            // because MSAA is on"), and TAA is what removes the pool-edge shimmer seen while
+            // moving the view. MSAA also cannot help the shader-level aliasing that causes it.
+            if(runtimePipeline) { runtimePipeline.renderScale=new[]{0.75f,0.9f,1f}[quality]; runtimePipeline.shadowDistance=new[]{25f,45f,65f}[quality]; runtimePipeline.msaaSampleCount=1; }
             QualitySettings.vSyncCount=1; Application.targetFrameRate=120;
         }
         public void Resume() { started=true; PlayerPrefs.Save(); player.Capture(); if(panel) panel.SetActive(false); }

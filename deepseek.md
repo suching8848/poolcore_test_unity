@@ -15,6 +15,7 @@ Unity CLI：`C:/Users/15792/AppData/Local/Unity/bin/unity.exe`
 |---|---|---|
 | `Assets/Poolcore/Scenes/Poolrooms.unity` | `First Person Camera` 上 `UniversalAdditionalCameraData.antialiasing`：`SubpixelMorphologicalAntiAliasing` → `TemporalAntiAliasing`（quality 保持 `High`）。场景已保存。 | **已改** |
 | `Assets/Poolcore/Editor/PoolroomsBuilder.cs` | `Create()` 中相机抗锯齿同步改为 TAA（附原因注释），防止重新生成场景时退回 SMAA。 | **已改** |
+| `Assets/Poolcore/Scripts/ExperienceMenu.cs` | `ApplyQuality()` 原本把 URP 克隆的 `msaaSampleCount` 设为 4/2 —— **MSAA 会静默禁用 TAA**，导致游戏里 TAA 失效。改为恒为 1。 | **已改（关键）** |
 | `Tools/diag/*.cs` | 新增可复现诊断脚本（`eval_file` 的 body 形式，**不在 Assets 下**，不会被 Unity 编译）。 | **新增** |
 | `deepseek.md` | 本文件。 | **新增** |
 
@@ -31,7 +32,28 @@ Unity CLI：`C:/Users/15792/AppData/Local/Unity/bin/unity.exe`
 池沿是全场景对比度最高的位置（阳光直射的亮色地面 × 极暗的排水沟 `Deep Green Trim` × 瓷砖缝），
 而相机原本只开了 **SMAA**。SMAA 是**纯空间滤波器**，无法消除运动混叠。
 
-**修复**：相机改用 **TAA**。
+**修复**：相机改用 **TAA**，并且**必须同时关掉 MSAA**（见 §3.1）。
+
+### 3.1 关键陷阱：MSAA 会静默禁用 TAA
+
+只把相机改成 TAA 是**不够的**。URP 在 MSAA 开启时会直接放弃 TAA，并在状态栏/控制台打印：
+
+```
+Disabling TAA because MSAA is on. Turn MSAA off on the camera or current URP Asset.
+```
+
+本项目里这个陷阱有两处：
+
+1. **`ExperienceMenu.ApplyQuality()`**（运行时）：它 `Instantiate` 出一个 URP 资产克隆并设
+   `msaaSampleCount = quality==2 ? 4 : 2`。于是**Play Mode 与打包版里 TAA 一直被顶掉**，
+   而 Edit 模式下因为用的是原始 `PC_RPAsset`（`msaa=1`）反而正常——所以"Edit 看着好、跑起来不行"。
+   已改为恒为 `1`。
+2. **Scene 视图**（编辑器）：Scene 视图有自己独立的抗锯齿开关，且它的 `SceneCamera` 上**根本没有
+   `UniversalAdditionalCameraData`**，因此**不经过游戏相机的 AA 设置**。
+
+审计结论（`pipelines.cs`）：`GraphicsSettings.defaultRenderPipeline = null`，
+两个质量档均为 `Mobile_RPAsset`/`PC_RPAsset` 且 **`msaa=1`**，`QualitySettings.antiAliasing = 0`。
+即修复后 MSAA 全关，TAA 生效。
 
 ---
 
@@ -138,6 +160,11 @@ Box(name+" South",new Vector3((x0+x1)/2,-0.45f,z0+t), new Vector3(x1-x0,0.9f,0.1
 | `flip-gloss.cs` | `_Smoothness` 扫描 |
 | `flip-taa.cs` | AA 模式对照（含 TAA 时间累积预热） |
 | `verify-fix.cs` | 读相机**实际**设置做修复前后 A/B，并输出池沿对照图 |
+| `playmode-verify.cs` | Play Mode 干净对照（**先冻结动画**：关水面 + 关 caustics），TAA/SMAA/None 三方比较 |
+| `playmode-ab.cs` | Play Mode 下 AA 模式 × MSAA 组合对照 |
+| `pipelines.cs` | 审计所有质量档的 URP 资产与其 MSAA（确认 TAA 不会被顶掉） |
+| `state-audit.cs` | 相机/角色位姿、AA、场景 dirty 状态审计（用于确认探测未留残留状态） |
+| `sceneview-probe.cs` | 证明 Scene 视图 `SceneCamera` 无 `UniversalAdditionalCameraData` |
 
 原始运行产物在 `artifacts/diag/`（该目录已被 `.gitignore` 排除）：
 `zfight-before.txt`、`flip-before.txt`、`flip-attr.txt`、`flip-gloss.txt`、`flip-taa.txt`、
@@ -172,17 +199,35 @@ Box(name+" South",new Vector3((x0+x1)/2,-0.45f,z0+t), new Vector3(x1-x0,0.9f,0.1
    需要在放宽沙箱权限（danger-full-access）下执行推送命令。
 8. 远端仓库：`https://github.com/suching8848/poolcore_test_unity.git`，
    分支 `main`，首次提交 `94fbbc6`（`git remote -v` 已配置 origin）。
+9. **Scene 视图与 Game 视图不是一回事。** Scene 视图的 `SceneCamera` 没有
+   `UniversalAdditionalCameraData`，**完全不使用**游戏相机的 TAA/SMAA 设置，所以
+   **在 Scene 视图里永远会比游戏里更闪**。判断画面质量必须看 Game 视图（Play）或打包版；
+   在 Scene 视图里评估渲染修复会得出错误结论。
+10. **`clear_console` 并不清空 `console` 命令读取的日志缓冲区。** 它返回成功，但旧的
+    warning 仍在。判断"某条 warning 是否还在产生"不能看总数，要看**单位时间的增量**
+    （本次就是靠"12 秒增量 = 0"才确认 `Disabling TAA` 已停止产生）。
+11. **Editor 在 tick 时，`eval_file` 内的多次 `Camera.Render()` 之间 `_Time` 会推进。**
+    凡是有动画的材质（水面 `_Ripple`、焦散 `_Caustics`）都会在两个采样点之间变化，
+    把"动画"混进"闪烁"测量里 —— 本次一度得到 `trans >32 = 6233` 的假异常值（真实值约 250）。
+    **测运动混叠前必须冻结动画**（隐藏水面渲染器 + `_Caustics = 0`）。
+12. `build_status` 的 `data.result` 是**一个 JSON 字符串**（不是对象），需要二次
+    `ConvertFrom-Json`；否则所有 `$o.data.result.status` 都是空。构建产物用文件时间戳核对最可靠
+    （增量构建不会重写 `Poolrooms.exe` 本身，但会重写 `Poolrooms_Data/` 与 `Assembly-CSharp.dll`）。
 
 ---
 
 ## 8. 本次**未**完成 / 未验证（残余风险）
 
-- **未重新打包 Windows player**。`Builds/Poolrooms/Poolrooms.exe` 仍是 TAA 改动**之前**的构建，
-  不含本次修复。需要时重跑：
-  `unity command build --target StandaloneWindows64 --outputPath Builds/Poolrooms/Poolrooms.exe --confirm true --project-path <root>`
+- **已重新打包 Windows player**（增量构建，`buildId=build_9d8f118afa09`，12:49 完成）：
+  `result=Succeeded`，`totalErrors=0`，`totalWarnings=4`，`totalSizeBytes=133,725,718`。
+  产物核验：`Poolrooms_Data/Assembly-CSharp.dll` 与 `sharedassets0.assets` 时间戳均为 12:49，
+  包含本次的 TAA + MSAA 修复；`Poolrooms.exe` 本身保留旧时间戳（增量构建不重写启动器，属正常）。
+  冒烟测试：`-batchmode -nographics` 启动后运行 10 秒正常，Input System 初始化成功，
+  日志无 Error/Exception（仅有一条 batch 模式下的 `Curl error 23` 日志写入噪声）。
 - **未跑 `ExperienceValidation.ValidateRoute()`**：本次只改抗锯齿、不动几何与碰撞，理论上无影响，但未实测。
 - **TAA 的副作用未做长时间人工验收**：TAA 可能带来轻微拖影/软化；透明水面无 motion vector，
-  行走时的水面是否出现拖影**需要人工行走观察确认**（静止画面已确认无异常，见 `artifacts/diag/rim-beauty-TemporalAntiAliasing.png`）。
+  行走时的水面是否出现拖影**需要人工行走观察确认**。**注意必须在 Game 视图（Play）或打包版里看**——
+  在 Scene 视图里看是无效的（见 §7 第 9 条）。
 - **未重新烘焙光照**（几何未变，不需要）。
 - 残余翻转：修复后仍有 70 px（旋转 0.02°）跳变 >32、14 px >64、max 80。属可接受残余，
   如需进一步压低可考虑：降低池沿/排水沟的极端明暗对比，或对程序化瓷砖缝做基于 `fwidth` 的距离带限。
