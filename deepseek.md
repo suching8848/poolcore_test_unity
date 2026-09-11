@@ -158,6 +158,20 @@ Box(name+" South",new Vector3((x0+x1)/2,-0.45f,z0+t), new Vector3(x1-x0,0.9f,0.1
 4. `FindObjectsByType<T>(FindObjectsSortMode.None)` 在 Unity 6000.6 已过时，改用 `FindObjectsByType<T>()`。
 5. 在 `eval_file` 里写委托时注意 `System.Func<...>` 的泛型参数个数必须含返回类型；
    `delegate{...}` 赋值语句结尾是 `};` 不是 `});`（本会话犯了两次）。
+6. **HTTPS 推送必须绕开 Schannel。** 本机 `http.sslbackend=schannel`
+   （`C:/Program Files/Git/etc/gitconfig`）。直接 `git push` 会失败：
+   `schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030e)`。
+   这不是网络被封（TCP 443 可达，且公共仓库 `git ls-remote` 同样失败），而是 Schannel 取不到凭据句柄。
+   改用 Git for Windows 自带的 OpenSSL 后端即可（CA bundle 已存在）：
+   ```
+   git -c http.sslBackend=openssl push -u origin main
+   ```
+7. **凭据助手需要具名管道。** 在受限沙箱下推送还会报
+   `sh.exe: *** fatal error - couldn't create signal pipe, Win32 error 5`
+   与 `could not read Username for 'https://github.com'` —— Git Credential Manager 无法启动。
+   需要在放宽沙箱权限（danger-full-access）下执行推送命令。
+8. 远端仓库：`https://github.com/suching8848/poolcore_test_unity.git`，
+   分支 `main`，首次提交 `94fbbc6`（`git remote -v` 已配置 origin）。
 
 ---
 
