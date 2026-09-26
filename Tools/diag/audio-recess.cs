@@ -1,0 +1,1 @@
+var player=UnityEngine.GameObject.Find("Player").GetComponent("FirstPersonController");player.GetType().GetMethod("Teleport").Invoke(player,new object[]{new UnityEngine.Vector3(36,.05f,22)});return "recess";

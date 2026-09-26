@@ -1,0 +1,1 @@
+UnityEngine.Application.runInBackground=true;UnityEditor.EditorApplication.QueuePlayerLoopUpdate();return new {playing=UnityEditor.EditorApplication.isPlaying,focused=UnityEngine.Application.isFocused,dsp=UnityEngine.AudioSettings.dspTime};

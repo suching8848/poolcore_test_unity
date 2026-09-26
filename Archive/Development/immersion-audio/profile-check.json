@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "maximumDecayChangePerCentimetre": 0.009088635,
+  "hallDecaySeconds": 2.9,
+  "recessDecaySeconds": 0.85,
+  "quietDecaySeconds": 1.65,
+  "worldLabels": 0,
+  "lightmaps": 4,
+  "liveListeners": 1,
+  "liveReverbZones": 1,
+  "livePlayingRoomSources": 9
+}

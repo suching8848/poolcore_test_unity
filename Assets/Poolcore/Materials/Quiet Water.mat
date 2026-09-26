@@ -23,15 +23,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _PlanarReflection:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Reflection:
         m_Texture: {fileID: 8900000, guid: 886dbdd28fcf0dd4f8144040244036a5, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ReflectionBlur: 0.65
+    - _ReflectionFloor: 0.065
     - _Ripple: 0.22
     m_Colors:
-    - _Deep: {r: 0.025, g: 0.22, b: 0.24, a: 1}
+    - _Absorption: {r: 0.55, g: 0.14, b: 0.1, a: 0}
+    - _Deep: {r: 0.045, g: 0.24, b: 0.23, a: 1}
     - _Shallow: {r: 0.24, g: 0.56, b: 0.53, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

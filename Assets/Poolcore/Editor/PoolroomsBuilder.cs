@@ -50,10 +50,8 @@ namespace Poolcore.Editor
         private static void Pool(string name,float x0,float x1,float z0,float z1,float bottom,float water,Material mat,bool steps=true)
         {
             Floor(name+" Floor",x0,x1,z0,z1,bottom,mat);
-            Box(name+" West",new Vector3(x0,-0.45f,(z0+z1)/2),new Vector3(0.16f,0.9f,z1-z0),mat);
-            Box(name+" East",new Vector3(x1,-0.45f,(z0+z1)/2),new Vector3(0.16f,0.9f,z1-z0),mat);
-            Box(name+" North",new Vector3((x0+x1)/2,-0.45f,z1),new Vector3(x1-x0,0.9f,0.16f),mat);
-            Box(name+" South",new Vector3((x0+x1)/2,-0.45f,z0),new Vector3(x1-x0,0.9f,0.16f),mat);
+            foreach(var part in PoolRimRepair.Layout(name,x0,x1,z0,z1,bottom,steps))
+                Box(part.name,part.position,part.size,mat);
             if(steps)
             {
                 for(int i=0;i<5;i++)
@@ -70,8 +68,8 @@ namespace Poolcore.Editor
             string path="Assets/Poolcore/Materials/"+name+" Water.mat";
             var wm=AssetDatabase.LoadAssetAtPath<Material>(path);
             if(wm==null) { wm=new Material(Shader.Find("Poolcore/Still Water")); AssetDatabase.CreateAsset(wm,path); }
-            wm.SetColor("_Shallow",new Color(0.24f,0.56f,0.53f)); wm.SetColor("_Deep",new Color(0.025f,0.22f,0.24f));
             w.GetComponent<Renderer>().sharedMaterial=wm;
+            CalmWaterSetup.Configure(w);
             var zone=w.AddComponent<WaterZone>(); zone.min=new Vector2(x0,z0); zone.max=new Vector2(x1,z1); zone.surface=water;
         }
         private static void Glow(string name,Vector3 pos,Vector3 scale,Color color,float intensity=1.5f,float range=9)
@@ -150,7 +148,7 @@ namespace Poolcore.Editor
             Wall("Quiet West",false,-10,18,33,6.5f,chalk); Wall("Quiet East",false,3,18,33,6.5f,chalk,20,23);
             Wall("Quiet South",true,18,-10,3,6.5f,chalk,-6,-3); Wall("Quiet North",true,33,-10,3,6.5f,chalk);
             Floor("Quiet Roof W",-10,-5,18,33,6.7f,chalk); Floor("Quiet Roof E",-3,3,18,33,6.7f,chalk);
-            foreach(float x in new[]{-7.7f,0.4f}) foreach(float z in new[]{20.3f,23f,27f,31f})
+            foreach(float x in new[]{-9f,2f}) foreach(float z in new[]{20.3f,23f,27f,31f})
                 Box("Quiet Pillar",new Vector3(x,3.2f,z),new Vector3(0.55f,6.4f,0.55f),chalk);
             Glow("Quiet Bounce",new Vector3(-4,5.9f,26),new Vector3(0.01f,0.01f,0.01f),new Color(0.7f,0.85f,0.92f),14,18);
             Floor("Upper Gallery",3,27,20,23,0,floor);
@@ -188,6 +186,10 @@ namespace Poolcore.Editor
             player.AddComponent<PoolAudio>();
             var experience=new GameObject("Experience").AddComponent<ExperienceMenu>(); experience.player=player.GetComponent<FirstPersonController>();
             EditorUtility.SetDirty(urp); EditorUtility.SetDirty(vp);
+            LargeHallBuilder.AddToScene();
+            HallAtmospherePass.Configure();
+            ContrastWingBuilder.Configure();
+            player.transform.position=new Vector3(58,.06f,0);
             EditorSceneManager.SaveScene(scene,ScenePath); EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(ScenePath,true)};
             AssetDatabase.SaveAssets();
         }

@@ -20,7 +20,6 @@ namespace Poolcore
         private UniversalRenderPipelineAsset originalPipeline, runtimePipeline;
         private int quality;
         private bool automated;
-        private string location;
         private float captionUntil;
         private readonly Color ink=new Color(0.88f,0.92f,0.85f);
         public bool MenuVisible => panel && panel.activeSelf;
@@ -141,8 +140,6 @@ namespace Poolcore
             if(Keyboard.current!=null && Keyboard.current.f3Key.wasPressedThisFrame) stats=!stats;
             smoothDelta=Mathf.Lerp(smoothDelta,Time.unscaledDeltaTime,0.05f);
             if(Time.unscaledTime>nextStats) { nextStats=Time.unscaledTime+0.5f; performance.text=stats?$"{1/Mathf.Max(0.001f,smoothDelta):F0} FPS  /  {smoothDelta*1000:F1} ms":""; }
-            string nextLocation=player.transform.position.z>18 ? "03  /  静水回廊" : player.transform.position.x>18 ? "02  /  暖光池" : "01  /  天光泳池";
-            if(!show && nextLocation!=location) { location=nextLocation; footer.text=location; captionUntil=Time.unscaledTime+4; }
             if(show || Time.unscaledTime>captionUntil) footer.text="";
             if(!show && Keyboard.current!=null && Keyboard.current.f2Key.wasPressedThisFrame)
                 StartCoroutine(TakePhoto());

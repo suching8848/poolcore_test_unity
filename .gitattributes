@@ -1,0 +1,2 @@
+# Preserve development archive bytes so the recorded SHA-256 hashes remain valid.
+Archive/Development/** -text

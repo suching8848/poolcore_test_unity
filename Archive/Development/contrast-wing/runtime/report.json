@@ -1,0 +1,21 @@
+{
+    "unityVersion": "6000.6.0f1",
+    "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "result": "PASS",
+    "width": 1920,
+    "height": 1080,
+    "frames": 105723,
+    "waypoints": 30,
+    "errors": 0,
+    "stallsOver100ms": 2,
+    "drySteps": 346,
+    "wadingSteps": 19,
+    "wadingVariants": 3,
+    "roomEmitters": 11,
+    "worldLabels": 0,
+    "seconds": 180.0008087158203,
+    "medianMs": 1.3616993427276611,
+    "p95Ms": 3.2359976768493652,
+    "p99Ms": 4.140199661254883,
+    "averageFps": 587.3536376953125
+}

@@ -1,0 +1,10 @@
+height=0.59 FOV=60 views=7 RGB range=0.0667
+height=0.59 FOV=75 views=8 RGB range=0.0514
+height=0.59 FOV=90 views=9 RGB range=0.0397
+height=1.1 FOV=60 views=6 RGB range=0.0880
+height=1.1 FOV=75 views=8 RGB range=0.0649
+height=1.1 FOV=90 views=9 RGB range=0.0331
+height=1.65 FOV=60 views=6 RGB range=0.0723
+height=1.65 FOV=75 views=8 RGB range=0.0383
+height=1.65 FOV=90 views=9 RGB range=0.0392
+PASS samples=70 worst range=0.08801745

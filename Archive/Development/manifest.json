@@ -1,0 +1,236 @@
+[
+  {
+    "original": "artifacts/contrast-wing/audio-before/Wade2.wav",
+    "archived": "Archive/Development/contrast-wing/audio-before/Wade2.wav",
+    "bytes": 25964,
+    "sha256": "d587dc67712b4145d982a8f5f6d371553d8ca8a0f1767d7290aaccd9b8645a52"
+  },
+  {
+    "original": "artifacts/contrast-wing/audio-before/Wade4.wav",
+    "archived": "Archive/Development/contrast-wing/audio-before/Wade4.wav",
+    "bytes": 25964,
+    "sha256": "89bf7b7bc1bd5fbb7694fd082793dca549429ac089c8b0eef726c8906f55a7f0"
+  },
+  {
+    "original": "artifacts/contrast-wing/audio-before/Wade6.wav",
+    "archived": "Archive/Development/contrast-wing/audio-before/Wade6.wav",
+    "bytes": 25964,
+    "sha256": "e694712f5146c6988d52879960084bcefe512d170462dc11a6d59fcd2902820c"
+  },
+  {
+    "original": "artifacts/contrast-wing/Before-20260913-014520.unity",
+    "archived": "Archive/Development/contrast-wing/Before-20260913-014520.unity",
+    "bytes": 955117,
+    "sha256": "059dc4ae6a88bca36499a108063c5a0076103365f8fce992e8e08e3547de9c66"
+  },
+  {
+    "original": "artifacts/contrast-wing/Before-20260913-014646.unity",
+    "archived": "Archive/Development/contrast-wing/Before-20260913-014646.unity",
+    "bytes": 1191207,
+    "sha256": "bfe477039f7f0ea3e3d8157245802ce82e753a44f610f58bb33e4504cb7f24ad"
+  },
+  {
+    "original": "artifacts/contrast-wing/Before-20260913-015056.unity",
+    "archived": "Archive/Development/contrast-wing/Before-20260913-015056.unity",
+    "bytes": 1194034,
+    "sha256": "bc4479d39e0f86e212a4fb0b07cfba76dcc1626c66148b9ddf991ea44470ec68"
+  },
+  {
+    "original": "artifacts/contrast-wing/reflection-turn.txt",
+    "archived": "Archive/Development/contrast-wing/reflection-turn.txt",
+    "bytes": 24,
+    "sha256": "5af135913d7b52ad1d10e9a5e886a7022b771b64914f30b588764c643d6bd241"
+  },
+  {
+    "original": "artifacts/contrast-wing/route.txt",
+    "archived": "Archive/Development/contrast-wing/route.txt",
+    "bytes": 644,
+    "sha256": "0627b22dba0ae780136dbb37c52a7352f86cd1b381a884057f4d8ad2f3f744e7"
+  },
+  {
+    "original": "artifacts/contrast-wing/runtime/report.json",
+    "archived": "Archive/Development/contrast-wing/runtime/report.json",
+    "bytes": 519,
+    "sha256": "1b24497d88b308a4609a2993a7674fea19bd042fb61d34f32f93a4a7729224fc"
+  },
+  {
+    "original": "artifacts/contrast-wing/view-0.png",
+    "archived": "Archive/Development/contrast-wing/view-0.png",
+    "bytes": 653492,
+    "sha256": "60d554f4e11157cf5f3e545047b610e173570fe688b8eb081f072f6808ae437e"
+  },
+  {
+    "original": "artifacts/contrast-wing/view-1.png",
+    "archived": "Archive/Development/contrast-wing/view-1.png",
+    "bytes": 268906,
+    "sha256": "8c793b9ee89e7a98217b4dab65b787fbaeb5e783952d633220a3a033eeb7ae61"
+  },
+  {
+    "original": "artifacts/contrast-wing/view-3.png",
+    "archived": "Archive/Development/contrast-wing/view-3.png",
+    "bytes": 827919,
+    "sha256": "14f88a884fba64c43a822c48883f0cbef0d7b960eda3e5411b2145999b5bfa52"
+  },
+  {
+    "original": "artifacts/depth-hall/Atmosphere-before-20260912-081409.unity",
+    "archived": "Archive/Development/depth-hall/Atmosphere-before-20260912-081409.unity",
+    "bytes": 767069,
+    "sha256": "626c5fd8bcbde287cace1a529748d4566b41a6857c92172dadca97189afdc54c"
+  },
+  {
+    "original": "artifacts/depth-hall/Atmosphere-before-20260912-081529.unity",
+    "archived": "Archive/Development/depth-hall/Atmosphere-before-20260912-081529.unity",
+    "bytes": 839032,
+    "sha256": "dbcc2affddba3a77f452c20a85d4670ed1fa5f8765fd869d1a682462735263aa"
+  },
+  {
+    "original": "artifacts/depth-hall/Poolrooms-before-20260911-222258.unity",
+    "archived": "Archive/Development/depth-hall/Poolrooms-before-20260911-222258.unity",
+    "bytes": 500390,
+    "sha256": "5714afbdb377dd6dd5d433652ff94cd3976aa3b8558bb629d3554a9e40d6e5f5"
+  },
+  {
+    "original": "artifacts/depth-hall/Poolrooms-before-20260911-222726.unity",
+    "archived": "Archive/Development/depth-hall/Poolrooms-before-20260911-222726.unity",
+    "bytes": 751494,
+    "sha256": "79ba8bb5f78db507d12a68e5bb3e6ab63c33677bda7ef80e6bd19f57966272ae"
+  },
+  {
+    "original": "artifacts/diag/aa-none-render.cs",
+    "archived": "Archive/Development/diag/aa-none-render.cs",
+    "bytes": 1029,
+    "sha256": "46a4ca51502b88ab9ec6a0370d465dcfcd9bc67c99766357b604718aedaed49e"
+  },
+  {
+    "original": "artifacts/diag/coplanar.cs",
+    "archived": "Archive/Development/diag/coplanar.cs",
+    "bytes": 2793,
+    "sha256": "d16fe9913d500fc3a20fd3467b8b9914e8b5405435f7d714a334fbb9937ca305"
+  },
+  {
+    "original": "artifacts/diag/edge-probe.cs",
+    "archived": "Archive/Development/diag/edge-probe.cs",
+    "bytes": 4948,
+    "sha256": "fec3446209c2926f9bf16893fd6ace262cd5ada76c8ece1a2c3ea3f4387d42af"
+  },
+  {
+    "original": "artifacts/diag/edge-probe2.cs",
+    "archived": "Archive/Development/diag/edge-probe2.cs",
+    "bytes": 4796,
+    "sha256": "e796cfad087428ef2dc7608b15c44c48ab864dc367bd95b25c31d5e97c5a9b83"
+  },
+  {
+    "original": "artifacts/diag/fix-taa.cs",
+    "archived": "Archive/Development/diag/fix-taa.cs",
+    "bytes": 1382,
+    "sha256": "8ba5c6c20f08f22342c48f8f0ce5f71f4ca1a0bc354f95fe5825310aa5175908"
+  },
+  {
+    "original": "artifacts/diag/playmode-check.cs",
+    "archived": "Archive/Development/diag/playmode-check.cs",
+    "bytes": 3811,
+    "sha256": "78f61917053d1eb083b0c1609b063d7123b0c6224c476bf80949ecda067ca00c"
+  },
+  {
+    "original": "artifacts/diag/probe.cs",
+    "archived": "Archive/Development/diag/probe.cs",
+    "bytes": 110,
+    "sha256": "52f190b9f9777b7dcb5bd68042762b49c76fbdc139e51d82e7c31aea5d4023d4"
+  },
+  {
+    "original": "artifacts/diag/render-once.cs",
+    "archived": "Archive/Development/diag/render-once.cs",
+    "bytes": 945,
+    "sha256": "5e8f82b25542b64f3d98e5eaabf8acb9fba9007e8ad1843a7e10bdee4dad31c4"
+  },
+  {
+    "original": "artifacts/diag/restore-sceneview-aa.cs",
+    "archived": "Archive/Development/diag/restore-sceneview-aa.cs",
+    "bytes": 1241,
+    "sha256": "e49b46a4d02638c2a2a3fcb6daea56161b1c372f7594104d8e86819a7a071589"
+  },
+  {
+    "original": "artifacts/diag/sceneview-aa-off.cs",
+    "archived": "Archive/Development/diag/sceneview-aa-off.cs",
+    "bytes": 1062,
+    "sha256": "df672f2d1a6fcdfc865cf65626c33d45b2f8617e62d8e4a9dbc41cd4d5787704"
+  },
+  {
+    "original": "artifacts/diag/sceneview-aa.cs",
+    "archived": "Archive/Development/diag/sceneview-aa.cs",
+    "bytes": 2201,
+    "sha256": "5c98b8aaaca61e1b8d9408e4e6f6e9dc4c014d70f36321939eee777be4132c6d"
+  },
+  {
+    "original": "artifacts/diag/snap.cs",
+    "archived": "Archive/Development/diag/snap.cs",
+    "bytes": 1682,
+    "sha256": "0ebd5ab9fd7590df5f1095c7ff9e681c7a77633ebee8020fa2404145d0d5a1ce"
+  },
+  {
+    "original": "artifacts/hall-finish/Before-20260912-200023.unity",
+    "archived": "Archive/Development/hall-finish/Before-20260912-200023.unity",
+    "bytes": 875321,
+    "sha256": "3375b621ac274c0426fb441f6888d0b99f08c996fa92bba3b9c409798baa6741"
+  },
+  {
+    "original": "artifacts/hall-finish/Before-20260912-200411.unity",
+    "archived": "Archive/Development/hall-finish/Before-20260912-200411.unity",
+    "bytes": 977488,
+    "sha256": "78aa5502cf5e477d281d3b13495ba1d5d8a5cdfecb544454c058362e557c2817"
+  },
+  {
+    "original": "artifacts/hall-finish/final-runtime/report.json",
+    "archived": "Archive/Development/hall-finish/final-runtime/report.json",
+    "bytes": 404,
+    "sha256": "449846a8aa76e1c9bc589d64349c9ca4e6f56363985e7b9263310aa83e80b583"
+  },
+  {
+    "original": "artifacts/immersion-audio/Before-label-removal.unity",
+    "archived": "Archive/Development/immersion-audio/Before-label-removal.unity",
+    "bytes": 985835,
+    "sha256": "b43391b4633b07b2bd74bf57ca18b648ffe6513bc7190b98d33ac53526ce335b"
+  },
+  {
+    "original": "artifacts/immersion-audio/profile-check.json",
+    "archived": "Archive/Development/immersion-audio/profile-check.json",
+    "bytes": 284,
+    "sha256": "fe0d8432ec9eb03b8fa0655021c5b7a686211c2c673df2401aaeaf4f68cdf978"
+  },
+  {
+    "original": "artifacts/immersion-audio/runtime/report.json",
+    "archived": "Archive/Development/immersion-audio/runtime/report.json",
+    "bytes": 516,
+    "sha256": "28fcc9c2312a65e9412393e9a3a2555f47ec5b18446ef259fe75faf2bfc26ae9"
+  },
+  {
+    "original": "artifacts/immersion-audio/sources/pump.mp3",
+    "archived": "Archive/Development/immersion-audio/sources/pump.mp3",
+    "bytes": 388896,
+    "sha256": "e0a3abffa69bb2b934e1a3bc189250afab4dc3404f59ddea267e13c1d008c20f"
+  },
+  {
+    "original": "artifacts/immersion-audio/sources/steps.mp3",
+    "archived": "Archive/Development/immersion-audio/sources/steps.mp3",
+    "bytes": 704304,
+    "sha256": "fac40932027d3132acbb0f8ed8ee14a136aa041799e83d5d673c117c3e21e48b"
+  },
+  {
+    "original": "artifacts/immersion-audio/sources/vent.mp3",
+    "archived": "Archive/Development/immersion-audio/sources/vent.mp3",
+    "bytes": 2293006,
+    "sha256": "7eefa7b9ab4a0ce33caf3d95e3e1772485f22c1dce71d9dfa82e74d762c792db"
+  },
+  {
+    "original": "artifacts/rim-fix/Poolrooms-before-20260911-165950.unity",
+    "archived": "Archive/Development/rim-fix/Poolrooms-before-20260911-165950.unity",
+    "bytes": 489490,
+    "sha256": "1eee17d1016ac611df2fb9fec0345307774b1871739287c3cc8028c57c8e7589"
+  },
+  {
+    "original": "artifacts/water-angle/regression.txt",
+    "archived": "Archive/Development/water-angle/regression.txt",
+    "bytes": 442,
+    "sha256": "bdeb9d29cc50c263ea5a338a1ad0ded7009df24279e6206baa3088d28aaca2ce"
+  }
+]
